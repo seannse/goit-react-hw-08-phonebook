@@ -1,42 +1,33 @@
-import Loader from 'components/Loader/Loader';
-import { Notify } from 'notiflix';
+import { Layout } from 'components';
+import ContactsPage from 'pages/Contacts/Contacts';
+import HomePage from 'pages/Home/Home';
+import LoginPage from 'pages/Login/Login';
+import RegisterPage from 'pages/Register/Register';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/contacts/operations';
+import { useDispatch } from 'react-redux';
 
-import { selectContacts, selectError, selectLoading } from 'redux/selectors';
-import { ContactForm, ContactList, Filter } from './components';
-
-import css from './styles/App.module.css';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { getCurrentUser } from 'redux/user/operations';
 
 export function App() {
-  const contacts = useSelector(selectContacts);
-  const loading = useSelector(selectLoading);
-  const error = useSelector(selectError);
-
   const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch(getContacts());
+    dispatch(getCurrentUser());
   }, [dispatch]);
-
-  useEffect(() => {
-    if (!error) return;
-    Notify.failure('Ooops, bad getaway');
-  }, [error]);
-
   return (
-    <div className={css}>
-      <h1>Phonebook</h1>
-      <ContactForm />
-      <Filter />
-      <h2>Contacts</h2>
-      {contacts.length !== 0 ? (
-        <ContactList />
-      ) : (
-        <p>Your contacts list is empty</p>
-      )}
-      {loading && <Loader />}
+    <div>
+      {/* <Suspense fallback={<Loader />}> */}
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="contacts" element={<ContactsPage />} />
+          <Route path="register" element={<RegisterPage />} />
+          <Route path="login" element={<LoginPage />} />
+        </Route>
+
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+      {/* </Suspense> */}
     </div>
   );
 }

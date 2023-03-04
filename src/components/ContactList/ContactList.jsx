@@ -20,11 +20,11 @@ const ContactList = () => {
   return (
     <div className={container.container}>
       <ol className={css.list}>
-        {filteredContacts.map(({ id, name, phone }) => {
+        {filteredContacts.map(({ id, name, number }) => {
           return (
             <li className={css.item} key={id}>
               <p>
-                {name}: {phone}
+                {name}: {number}
               </p>
 
               <button

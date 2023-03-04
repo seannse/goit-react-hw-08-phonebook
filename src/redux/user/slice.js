@@ -1,13 +1,28 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { getContacts, addContact, removeContact } from './operations';
+import {
+  registerRequest,
+  loginRequest,
+  logOutRequest,
+  getCurrentUser,
+} from './operations';
 
 const initialState = {
-  items: [],
+  userData: {
+    name: null,
+    email: null,
+  },
+  isLogin: false,
   isLoading: false,
+  token: null,
   error: null,
 };
 
-const extraActions = [getContacts, addContact, removeContact];
+const extraActions = [
+  registerRequest,
+  loginRequest,
+  logOutRequest,
+  getCurrentUser,
+];
 
 const getActions = type => extraActions.map(action => action[type]);
 
@@ -25,19 +40,32 @@ const handleFulfilled = state => {
   state.isLoading = false;
 };
 
-const contactsSlice = createSlice({
-  name: 'contacts',
+const authSlice = createSlice({
+  name: 'auth',
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(getContacts.fulfilled, (state, { payload }) => {
-        state.items = payload;
+      .addCase(registerRequest.fulfilled, (state, { payload }) => {
+        state.userData = payload.user;
+        state.token = payload.token;
+        state.isLogin = true;
       })
-      .addCase(addContact.fulfilled, (state, { payload }) => {
-        state.items = [...state.items, payload];
+      .addCase(loginRequest.fulfilled, (state, { payload }) => {
+        state.userData = payload.user;
+        state.token = payload.token;
+        state.isLogin = true;
       })
-      .addCase(removeContact.fulfilled, (state, { payload }) => {
-        state.items = state.items.filter(contact => contact.id !== payload);
+      .addCase(logOutRequest.fulfilled, state => {
+        state.userData = {
+          name: null,
+          email: null,
+        };
+        state.isLogin = false;
+        state.token = null;
+      })
+      .addCase(getCurrentUser.fulfilled, (state, { payload }) => {
+        state.userData = payload;
+        state.isLogin = true;
       })
       .addMatcher(isAnyOf(...getActions('pending')), handlePending)
       .addMatcher(isAnyOf(...getActions('fulfilled')), handleFulfilled)
@@ -45,4 +73,4 @@ const contactsSlice = createSlice({
   },
 });
 
-export const contactsReducer = contactsSlice.reducer;
+export const authReducer = authSlice.reducer;
