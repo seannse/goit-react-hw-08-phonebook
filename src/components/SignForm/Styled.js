@@ -10,7 +10,7 @@ export const StyledForm = styled.form`
 
   .input {
     padding: 10px;
-    font-size: 14px;
+    font-size: 16px;
     display: inline-block;
     border-bottom: 2px solid hsl(234deg 48% 34%);
     background-color: transparent;
@@ -52,28 +52,44 @@ export const StyledForm = styled.form`
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 40px;
-    /* background-image: linear-gradient(_, _),
-      linear-gradient(45deg, #b63c8e, #0a6cdf);
-    background-clip: content-box, border-box; */
-    border: 1px solid rgb(246, 250, 250);
+    height: 50px;
+    font-size: 20px;
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.55) 1px 2px 5px 0px;
     cursor: pointer;
+    border: 1px solid rgba(9, 107, 222, 1);
     color: rgb(246, 250, 250);
+    position: relative;
+    z-index: 100;
 
-    &:hover,
-    &:focus {
-      background: linear-gradient(
+    &:before {
+      border-radius: inherit;
+      background-image: linear-gradient(
         135deg,
         rgba(191, 57, 137, 1) 0%,
         rgba(9, 107, 222, 1) 100%
       );
       border: 0px solid transparent;
+      content: '';
+      display: block;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      width: 100%;
+      z-index: -100;
+      transition: opacity 1s;
     }
-    /* 
-    &:disabled {
-      background: rgb(3, 5, 36);
-    } */
+
+    &:hover:before,
+    &:focus:before {
+      opacity: 1;
+    }
+
+    &:hover,
+    &:focus {
+      border: 0px solid transparent;
+    }
   }
 `;

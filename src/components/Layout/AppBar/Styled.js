@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const HeaderWrapper = styled.form`
+  font-size: 24px;
   display: flex;
   gap: 30px;
   padding: 20px;
