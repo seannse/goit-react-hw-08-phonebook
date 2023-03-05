@@ -55,9 +55,9 @@ export const StyledForm = styled.form`
     height: 50px;
     font-size: 20px;
     border-radius: 8px;
-    box-shadow: rgba(0, 0, 0, 0.55) 1px 2px 5px 0px;
+    box-shadow: rgba(9, 107, 222, 0.5) 2px 2px 5px 0px,
+      rgba(9, 107, 222, 0.3) 4px 4px 5px 0px;
     cursor: pointer;
-    border: 1px solid rgba(9, 107, 222, 1);
     color: rgb(246, 250, 250);
     position: relative;
     z-index: 100;
@@ -66,8 +66,8 @@ export const StyledForm = styled.form`
       border-radius: inherit;
       background-image: linear-gradient(
         135deg,
-        rgba(191, 57, 137, 1) 0%,
-        rgba(9, 107, 222, 1) 100%
+        rgba(9, 107, 222, 1) 0%,
+        rgba(191, 57, 137, 1) 100%
       );
       border: 0px solid transparent;
       content: '';
@@ -89,7 +89,7 @@ export const StyledForm = styled.form`
 
     &:hover,
     &:focus {
-      border: 0px solid transparent;
+      box-shadow: none;
     }
   }
 `;

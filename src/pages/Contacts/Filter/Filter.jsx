@@ -13,17 +13,19 @@ function Filter() {
 
   return (
     <Label>
-      Search
-      <Img />
-      <input
-        className="input"
-        type="text"
-        name="search"
-        pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-        value={filter}
-        onChange={handleFilter}
-      />
+      <label className="label">
+        Search
+        <Img />
+        <input
+          className="input"
+          type="text"
+          name="search"
+          pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+          title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          value={filter}
+          onChange={handleFilter}
+        />
+      </label>
     </Label>
   );
 }

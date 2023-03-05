@@ -1,16 +1,28 @@
 import styled from 'styled-components';
 import { ImSearch } from 'react-icons/im';
 
-export const Label = styled.label`
+export const Label = styled.div`
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  gap: 10px;
-  margin-bottom: 30px;
-  position: relative;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  box-shadow: rgba(9, 107, 222, 0.5) 1px 2px 5px 0px;
+  width: 250px;
+  height: 200px;
+  padding: 0 10px 0;
+  position: fixed;
+  right: 15px;
 
+  .label {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 10px;
+    position: relative;
+  }
   .input {
-    width: 200px;
+    width: 100%;
     padding: 10px;
     font-size: 14px;
     display: inline-block;

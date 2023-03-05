@@ -45,8 +45,10 @@ export const StyledLink = styled(NavLink)`
     border-bottom: 1px solid rgb(246, 250, 250);
   }
 
-  :hover,
+  :hover:not(.active),
   :focus-visible {
-    border-bottom: 1px solid rgb(246, 250, 250);
+    border-radius: 10px;
+    box-shadow: rgba(9, 107, 222, 0.5) 2px 2px 5px 0px,
+      rgba(9, 107, 222, 0.3) 4px 4px 5px 0px;
   }
 `;
