@@ -1,22 +1,24 @@
-import { Layout } from 'components';
-import ContactsPage from 'pages/Contacts/Contacts';
-import HomePage from 'pages/Home/Home';
-import LoginPage from 'pages/Login/Login';
-import RegisterPage from 'pages/Register/Register';
-import { useEffect } from 'react';
+import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-
 import { Navigate, Route, Routes } from 'react-router-dom';
+
+import { Layout } from 'components';
 import { getCurrentUser } from 'redux/user/operations';
+
+const RegisterPage = lazy(() => import('./pages/Register/Register'));
+const LoginPage = lazy(() => import('./pages/Login/Login'));
+const ContactsPage = lazy(() => import('./pages/Contacts/Contacts'));
+const HomePage = lazy(() => import('./pages/Home/Home'));
 
 export function App() {
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getCurrentUser());
   }, [dispatch]);
+
   return (
     <div>
-      {/* <Suspense fallback={<Loader />}> */}
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
@@ -27,7 +29,6 @@ export function App() {
 
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-      {/* </Suspense> */}
     </div>
   );
 }

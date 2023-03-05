@@ -4,9 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { selectContacts } from 'redux/selectors';
 
-import css from './ContactForm.module.css';
-import container from '../../styles/Container.module.css';
 import { addContact } from 'redux/contacts/operations';
+import { StyledForm } from 'components/SignForm/Styled';
 
 function ContactForm() {
   const [name, setName] = useState('');
@@ -33,11 +32,12 @@ function ContactForm() {
     e.preventDefault();
     if (
       contacts.some(
-        ({ name: nameFromReduxState }) =>
-          nameFromReduxState.toLowerCase().trim() === name.toLowerCase().trim()
+        ({ name: nameFromReduxState, number }) =>
+          nameFromReduxState.toLowerCase().trim() ===
+            name.toLowerCase().trim() || number.trim() === phone.trim()
       )
     ) {
-      Notify.failure(`${name} is already in contacts!`);
+      Notify.failure(`${name} or ${phone} is already in contacts!`);
       return;
     }
 
@@ -47,11 +47,11 @@ function ContactForm() {
   }
 
   return (
-    <div className={container.container}>
-      <form className={css.form} onSubmit={handleSubmit}>
-        <label className={css.label}>
+    <div>
+      <StyledForm onSubmit={handleSubmit}>
+        <label>
           <input
-            className={css.input}
+            className="input"
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -62,9 +62,9 @@ function ContactForm() {
             required
           />
         </label>
-        <label className={css.label}>
+        <label>
           <input
-            className={css.input}
+            className="input"
             type="tel"
             name="phone"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -75,10 +75,10 @@ function ContactForm() {
             required
           />
         </label>
-        <button className={css.button} type="submit">
+        <button className="form-btn" type="submit">
           Add Contact
         </button>
-      </form>
+      </StyledForm>
     </div>
   );
 }

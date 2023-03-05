@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { selectFilteredContacts } from 'redux/selectors';
 import { removeContact } from 'redux/contacts/operations';
-
-import css from './ContactList.module.css';
-import container from '../../styles/Container.module.css';
+import { List } from './List.styled';
 
 const ContactList = () => {
   const dispatch = useDispatch();
@@ -18,17 +16,17 @@ const ContactList = () => {
   // }
 
   return (
-    <div className={container.container}>
-      <ol className={css.list}>
+    <div>
+      <List>
         {filteredContacts.map(({ id, name, number }) => {
           return (
-            <li className={css.item} key={id}>
-              <p>
+            <li className="item" key={id}>
+              <p className="p">
                 {name}: {number}
               </p>
 
               <button
-                className={css.button}
+                className="button"
                 type="button"
                 onClick={() => dispatch(removeContact(id))}
               >
@@ -37,7 +35,7 @@ const ContactList = () => {
             </li>
           );
         })}
-      </ol>
+      </List>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import {
   registerRequest,
   loginRequest,
@@ -12,32 +12,13 @@ const initialState = {
     email: null,
   },
   isLogin: false,
-  isLoading: false,
   token: null,
-  error: null,
 };
 
-const extraActions = [
-  registerRequest,
-  loginRequest,
-  logOutRequest,
-  getCurrentUser,
-];
-
-const getActions = type => extraActions.map(action => action[type]);
-
-const handlePending = state => {
-  state.isLoading = true;
-  state.error = null;
-};
-
-const handleRejected = (state, { payload }) => {
-  state.isLoading = false;
-  state.error = payload;
-};
-
-const handleFulfilled = state => {
-  state.isLoading = false;
+const handleFulfilledAuth = (state, { payload }) => {
+  state.userData = payload.user;
+  state.token = payload.token;
+  state.isLogin = true;
 };
 
 const authSlice = createSlice({
@@ -45,16 +26,8 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(registerRequest.fulfilled, (state, { payload }) => {
-        state.userData = payload.user;
-        state.token = payload.token;
-        state.isLogin = true;
-      })
-      .addCase(loginRequest.fulfilled, (state, { payload }) => {
-        state.userData = payload.user;
-        state.token = payload.token;
-        state.isLogin = true;
-      })
+      .addCase(registerRequest.fulfilled, handleFulfilledAuth)
+      .addCase(loginRequest.fulfilled, handleFulfilledAuth)
       .addCase(logOutRequest.fulfilled, state => {
         state.userData = {
           name: null,
@@ -66,10 +39,7 @@ const authSlice = createSlice({
       .addCase(getCurrentUser.fulfilled, (state, { payload }) => {
         state.userData = payload;
         state.isLogin = true;
-      })
-      .addMatcher(isAnyOf(...getActions('pending')), handlePending)
-      .addMatcher(isAnyOf(...getActions('fulfilled')), handleFulfilled)
-      .addMatcher(isAnyOf(...getActions('rejected')), handleRejected);
+      });
   },
 });
 

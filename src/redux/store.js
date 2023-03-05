@@ -14,6 +14,7 @@ import {
 import { contactsReducer } from './contacts/slice';
 import { filterReducer } from './filter/slice';
 import { authReducer } from './user/slice';
+import { globalReducer } from './global/slice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -23,6 +24,7 @@ const authPersistConfig = {
 
 export const store = configureStore({
   reducer: {
+    global: globalReducer,
     contacts: contactsReducer,
     filter: filterReducer,
     auth: persistReducer(authPersistConfig, authReducer),
