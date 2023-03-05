@@ -47,7 +47,7 @@ export const StyledLink = styled(NavLink)`
 
   :hover:not(.active),
   :focus-visible {
-    border-radius: 10px;
+    border-radius: 6px;
     box-shadow: rgba(9, 107, 222, 0.5) 2px 2px 5px 0px,
       rgba(9, 107, 222, 0.3) 4px 4px 5px 0px;
   }

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = process.env.REACT_APP__API;
+axios.defaults.baseURL = process.env.REACT_APP__API ?? 'heroku_url';
 
 const token = {
   set(token) {
