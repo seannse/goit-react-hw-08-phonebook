@@ -10,7 +10,7 @@ export const StyledForm = styled.form`
 
   .input {
     padding: 10px;
-    font-size: 16px;
+    font-size: 18px;
     display: inline-block;
     border-bottom: 2px solid hsl(234deg 48% 34%);
     background-color: transparent;
@@ -20,18 +20,12 @@ export const StyledForm = styled.form`
     outline: none;
     padding-left: 10px;
     padding-right: 10px;
-    &:active,
-    &:focus {
-      background-color: transparent;
-    }
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: rgb(246, 250, 250);
+
     ::placeholder {
       font: inherit;
-      font-size: 14px;
-    }
-
-    &:-internal-autofill-selected {
-      background-color: transparent;
-      color: rgb(246, 250, 250);
+      font-size: 18px;
     }
   }
 
@@ -53,7 +47,7 @@ export const StyledForm = styled.form`
     align-items: center;
     justify-content: center;
     height: 50px;
-    font-size: 20px;
+    font-size: 24px;
     border-radius: 8px;
     box-shadow: rgba(9, 107, 222, 0.5) 2px 2px 5px 0px,
       rgba(9, 107, 222, 0.3) 4px 4px 5px 0px;

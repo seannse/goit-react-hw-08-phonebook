@@ -12,6 +12,12 @@ export const Label = styled.div`
   padding: 0 10px 0;
   position: fixed;
   right: 15px;
+  transition: transform 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  &:hover,
+  &:focus {
+    transform: scale(1.1);
+  }
 
   .label {
     width: 100%;
@@ -34,11 +40,8 @@ export const Label = styled.div`
     outline: none;
     padding-left: 10px;
     padding-right: 10px;
-
-    &:active,
-    &:focus {
-      background-color: transparent;
-    }
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: rgb(246, 250, 250);
   }
 `;
 
