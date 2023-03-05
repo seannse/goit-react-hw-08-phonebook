@@ -5,6 +5,7 @@ import { Outlet } from 'react-router-dom';
 import { Loader, ParticleWave, PublicAppBar, UserMenu } from 'components';
 import { selectLogin } from 'redux/selectors';
 import { Container } from 'styles/Container.styled';
+import FooterComponent from './Footer/Footer';
 
 function Layout() {
   const isLogin = useSelector(selectLogin);
@@ -19,6 +20,7 @@ function Layout() {
           <Outlet />
         </Suspense>
       </main>
+      <FooterComponent />
       <ParticleWave />
     </>
   );

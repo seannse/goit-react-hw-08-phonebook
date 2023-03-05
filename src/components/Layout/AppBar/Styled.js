@@ -8,7 +8,7 @@ export const HeaderWrapper = styled.form`
   padding: 20px;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 4px solid;
+  border-bottom: 5px solid;
   border-image: linear-gradient(
       to right,
       rgb(182, 60, 142),
@@ -32,10 +32,6 @@ export const HeaderWrapper = styled.form`
         rgba(9, 107, 222, 1) 100%
       );
     }
-
-    /* &:disabled {
-      background: rgb(3, 5, 36);
-    } */
   }
 `;
 
