@@ -2,7 +2,7 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectContacts } from 'redux/selectors';
+import { selectContacts, selectLoading } from 'redux/selectors';
 
 import { addContact } from 'redux/contacts/operations';
 import { StyledForm } from 'components/SignForm/Styled';
@@ -12,6 +12,7 @@ function ContactForm() {
   const [phone, setPhone] = useState('');
 
   const contacts = useSelector(selectContacts);
+  const loading = useSelector(selectLoading);
   const dispatch = useDispatch();
 
   function handleChange({ target }) {
@@ -75,7 +76,7 @@ function ContactForm() {
             required
           />
         </label>
-        <button className="form-btn" type="submit">
+        <button className="form-btn" disabled={loading} type="submit">
           Add Contact
         </button>
       </StyledForm>

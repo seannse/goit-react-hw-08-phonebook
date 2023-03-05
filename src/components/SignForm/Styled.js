@@ -57,7 +57,6 @@ export const StyledForm = styled.form`
       linear-gradient(45deg, #b63c8e, #0a6cdf);
     background-clip: content-box, border-box; */
     border: 1px solid rgb(246, 250, 250);
-
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.55) 1px 2px 5px 0px;
     cursor: pointer;
@@ -72,5 +71,9 @@ export const StyledForm = styled.form`
       );
       border: 0px solid transparent;
     }
+    /* 
+    &:disabled {
+      background: rgb(3, 5, 36);
+    } */
   }
 `;

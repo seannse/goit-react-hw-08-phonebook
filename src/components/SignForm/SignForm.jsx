@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 
 import { StyledForm } from './Styled';
 import { Container } from 'styles/Container.styled';
+import { useSelector } from 'react-redux';
+import { selectLoading } from 'redux/selectors';
 
 function SignForm({ onSubmit, isLoginForm = false }) {
   const nameInputRef = useRef();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+
+  const loading = useSelector(selectLoading);
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -60,7 +64,7 @@ function SignForm({ onSubmit, isLoginForm = false }) {
           />
         </label>
 
-        <button className="form-btn" type="submit">
+        <button className="form-btn" type="submit" disabled={loading}>
           {isLoginForm ? 'Log In' : 'Sign Up'}
         </button>
       </StyledForm>

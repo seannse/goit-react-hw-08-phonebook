@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectName } from 'redux/selectors';
+import { selectLoading, selectName } from 'redux/selectors';
 import { logOutRequest } from 'redux/user/operations';
 import { HeaderWrapper, StyledLink } from './Styled';
 
@@ -8,6 +8,7 @@ function UserMenu() {
   const dispatch = useDispatch();
 
   const userName = useSelector(selectName);
+  const loading = useSelector(selectLoading);
 
   const handleLogOut = () => {
     dispatch(logOutRequest());
@@ -25,7 +26,12 @@ function UserMenu() {
         </ul>
       </nav>
       <span>Hello, {userName}</span>
-      <button className="button" type="button" onClick={handleLogOut}>
+      <button
+        className="button"
+        type="button"
+        onClick={handleLogOut}
+        disabled={loading}
+      >
         Logout
       </button>
     </HeaderWrapper>

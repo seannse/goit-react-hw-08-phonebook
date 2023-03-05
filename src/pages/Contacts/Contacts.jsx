@@ -31,10 +31,12 @@ function ContactsPage() {
     <Section>
       <Container>
         <ContactForm />
-        <Filter />
         <h2>Contacts</h2>
         {contacts.length !== 0 ? (
-          <ContactList />
+          <>
+            <Filter />
+            <ContactList />
+          </>
         ) : (
           <p>Your contacts list is empty</p>
         )}
