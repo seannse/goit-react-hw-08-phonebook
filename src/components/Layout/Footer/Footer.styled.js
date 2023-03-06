@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Footer = styled.footer`
+export const Footer = styled.div`
   padding: 10px 0px;
   border-top: 5px solid;
   border-image: linear-gradient(
@@ -13,11 +13,11 @@ export const Footer = styled.footer`
 `;
 
 export const WrapperAll = styled.div`
-  min-height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 `;
 
 export const Main = styled.main`
-  flex: 1 1 auto;
+  flex-grow: 1;
 `;

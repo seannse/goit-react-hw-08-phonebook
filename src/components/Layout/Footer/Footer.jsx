@@ -3,9 +3,11 @@ import { Footer } from './Footer.styled';
 
 function FooterComponent() {
   return (
-    <Container>
-      <Footer />
-    </Container>
+    <footer>
+      <Container>
+        <Footer />
+      </Container>
+    </footer>
   );
 }
 

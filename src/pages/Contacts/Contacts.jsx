@@ -1,4 +1,4 @@
-import { Loader } from 'components';
+import { ContactForm, ContactList, Filter, Loader } from 'components';
 import PrivateWithRedirect from 'HOC/PrivateWithRedirect';
 import { Notify } from 'notiflix';
 import React, { useEffect } from 'react';
@@ -7,9 +7,6 @@ import { getContacts } from 'redux/contacts/operations';
 import { selectContacts, selectError, selectLoading } from 'redux/selectors';
 import { Container } from 'styles/Container.styled';
 import { Section } from 'styles/Section.styled';
-import ContactForm from './ContactForm/ContactForm';
-import ContactList from './ContactList/ContactList';
-import Filter from './Filter/Filter';
 
 function ContactsPage() {
   const contacts = useSelector(selectContacts);
