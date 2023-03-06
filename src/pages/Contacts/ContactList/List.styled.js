@@ -2,11 +2,11 @@ import styled from 'styled-components';
 
 export const List = styled.ol`
   display: flex;
-  justify-content: flex-start;
-  gap: 30px;
-  flex-wrap: wrap;
-  align-items: center;
-  width: 700px;
+  justify-content: center;
+  gap: 10px;
+  align-items: flex-start;
+  flex-direction: column;
+  padding-left: 100px;
 
   .button {
     display: flex;
@@ -31,12 +31,12 @@ export const List = styled.ol`
 
   .item {
     font-size: 20px;
-    padding: 10px 0;
+    padding: 5px;
     display: flex;
-    flex-direction: column;
     gap: 8px;
     align-items: center;
-    width: 200px;
+    width: 300px;
+    justify-content: space-between;
 
     :hover,
     :focus {
